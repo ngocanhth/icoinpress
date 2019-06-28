@@ -149,4 +149,5 @@ return [
     'Temando_Shipping' => 1,
     'Vertex_Tax' => 1
   ]
+  
 ];
