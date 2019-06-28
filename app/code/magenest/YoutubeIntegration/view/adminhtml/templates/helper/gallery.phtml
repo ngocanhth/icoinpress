@@ -1,0 +1,48 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Adminhtml\Product\Helper\Form\Gallery\Content */
+//$elementName = $block->getElement()->getName() . '[images]';
+//$formName = $block->getFormName();
+?>
+
+    <div id="<?php /* @noEscape */ echo $block->getNewVideoBlockName();?>" style="display:none">
+        <?php /* @escapeNotVerified */ echo $block->getFormHtml();?>
+        <div id="video-player-preview-location">
+            <div class="video-player-container"></div>
+            <div class="video-information title">-->
+                <label>hihi</label><span></span>
+            </div>
+<!--            <div class="video-information title">-->
+<!--                <label>--><?php //echo $block->escapeHtml(
+//                        __('Title:')
+//                    ); ?><!-- </label><span></span>-->
+<!--            </div>-->
+<!--            <div class="video-information uploaded">-->
+<!--                <label>--><?php //echo $block->escapeHtml(
+//                        __('Uploaded:')
+//                    ); ?><!-- </label><span></span>-->
+<!--            </div>-->
+<!--            <div class="video-information uploader">-->
+<!--                <label>--><?php //echo $block->escapeHtml(
+//                        __('Uploader:')
+//                    ); ?><!-- </label><span></span>-->
+<!--            </div>-->
+<!--            <div class="video-information duration">-->
+<!--                <label>--><?php //echo $block->escapeHtml(
+//                        __('Duration:')
+//                    ); ?><!-- </label><span></span>-->
+<!--            </div>-->
+        </div>
+    </div>
+
+    <?php echo $block->getChildHtml('new-video'); ?>
+
+<script>
+    jQuery('body').trigger('contentUpdated');
+</script>

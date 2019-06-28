@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magenest_YoutubeIntegration::css/style.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\YoutubeIntegration\Block\Adminhtml\Gallery\Edit" name="youtube_integration_gallery_edit"/>
+            <!--<uiComponent name="sampleform_form"/>-->
+        </referenceContainer>
+    </body>
+    <referenceContainer name="left">
+        <block class="Magenest\YoutubeIntegration\Block\Adminhtml\Gallery\Edit\Tabs" name="youtube_integration_gallery_tabs">
+            <!--add tab-->
+            <block class="Magenest\YoutubeIntegration\Block\Adminhtml\Gallery\Edit\Tab\Gallery" name="youtube_integration_gallery_tab_general"/>
+            <!--<block class="Magenest\YoutubeIntegration\Block\Adminhtml\Gallery\Edit\Tab\Source" name="youtube_integration_source_tab_general"/>-->
+            <!--<block class="Magenest\YoutubeIntegration\Block\Adminhtml\Gallery\Edit\Tab\Newv" name="youtube_integration_newvideo_tab_general"/>-->
+            <!--add tab-->
+            <action method="addTab">
+                <argument name="name" xsi:type="string">youtube_integration_gallery_general</argument>
+                <argument name="block" xsi:type="string">youtube_integration_gallery_tab_general</argument>
+            </action>
+            <!--<action method="addTab">-->
+                <!--<argument name="name" xsi:type="string">youtube_integration_source_general</argument>-->
+                <!--<argument name="block" xsi:type="string">youtube_integration_source_tab_general</argument>-->
+            <!--</action>-->
+            <!--<action method="addTab">-->
+                <!--<argument name="name" xsi:type="string">youtube_integration_newvideo_general</argument>-->
+                <!--<argument name="block" xsi:type="string">youtube_integration_newvideo_tab_general</argument>-->
+            <!--</action>-->
+        </block>
+        <!--<uiComponent name="sampleform_form"/>-->
+    </referenceContainer>
+    <referenceContainer name="js">
+        <block class="Magenest\YoutubeIntegration\Block\Adminhtml\Gallery\Edit\Js" template="location/js.phtml"/>
+    </referenceContainer>
+    <!--<referenceContainer name="playlist">-->
+        <!--<block class="Magenest\YoutubeIntegration\Block\Adminhtml\Gallery\Edit\PlayList" template="location/playlist.phtml"/>-->
+    <!--</referenceContainer>-->
+</page>

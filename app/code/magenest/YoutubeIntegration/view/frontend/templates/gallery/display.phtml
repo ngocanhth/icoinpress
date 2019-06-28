@@ -1,0 +1,518 @@
+<?php
+
+    $channel = $block->getChannelActive();
+
+   
+    if($channel == null){
+        echo "You have no channel to display!";
+    }
+else{
+	 $gallery_name = $channel[0]['gallery_name'];
+
+    $gallery_id = $channel[0]['id'];
+
+    $gallery_channel_url = $channel[0]['gallery_channel_url'];
+    $channel_code = substr( $gallery_channel_url,  32, 56 );
+
+    $group_id = $block->getGroupActive($gallery_id)[0]['group_id'];
+
+?>
+<!--popup-->
+
+
+<div class ="modal" id="popup-page">
+    <span class="close">×</span>
+    <!--popup video-->
+    <div class = "video-content">
+        <iframe id ="one-video-id-iframe" src="" title="YouTube video player" allowfullscreen="1" frameborder="0" width="100%" height="100%"></iframe>
+    </div>
+    <!--popup content-->
+    <div class ="popup-content" >
+
+
+        <div class ="watch-headline">
+            <h1 id="watch-title" class="watch-title">This is title </h1>
+        </div>
+
+        <div class ="watch-video-info-meta">
+            <div class="watch-video-channel">
+                <div class="watch-thumbnail-channel">
+                    <a id="watch-thumbnail-channel-url" class ="watch-thumbnail-channel-url" href="">
+                        <img id="watch-thumbnail-channel-img" src="">
+                        </img>
+                    </a>
+                </div>
+                <div class="watch-video-channel-info">
+                    <a id = "watch-video-channel-info-name" class ="watch-video-channel-info-name" href="">name channel</a>
+                    <div class ="watch-sub-channel" style="margin-top: 15px">
+                        <div style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent none repeat scroll 0% 0%; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 114px; height: 24px;">
+                            <iframe data-gapiattached="true" id="sub_button" src="" name="I0_1476170822347" tabindex="0" style="position: static; top: 0px; width: 114px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" scrolling="no" marginwidth="0" marginheight="0"  frameborder="0" width="100%">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class ="watch-video-properties">
+                <div id= "watch-video-views" class = "watch-video-views"></div>
+                <div class = "watch-video-rating">
+                    <div class="watch-video-rating-ratio">
+                                <span style="width: 98%">
+                                </span>
+                    </div>
+                    <div class = "watch-video-rating-count">
+                        <div class = "watch-video-like">
+                            <span  class="watch-video-icon-like">Likes: </span>
+                            <span class="watch-video-likes"></span>
+                        </div>
+                        <div class = "watch-video-dislike">
+                            <span class="watch-video-icon-dislike">Dislikes: </span>
+                            <span class="watch-video-dislikes"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class ="watch-video-info-main">
+            <div id ="watch-video-publish-date" class="watch-video-publish-date"></div>
+            <div id = "watch-video-description" class="watch-video-description">
+
+            </div>
+            <div class="watch-video-description-more">
+                Show more/Show less
+            </div>
+        </div>
+
+        <div class ="watch-video-cmts" id="watch-video-cmts"></div>
+        <div id="load-more-cmt">Load more comment</div>
+
+
+
+
+    </div>
+</div>
+<div class = "youtube-inner">
+    <div class = "youtube-header">
+        <div class = "channel-logo" >
+            <a class="link_video" href="">
+                <img id="img-profile-channel" src="">
+                </img>
+            </a>
+        </div>
+        <div class= "channel-banner"  id="banner" >
+
+        </div>
+        <div class ="channel-header">
+            <div class ="youtube-channel-header-inner">
+                <div class ="youtube-channel-header-title">
+                    <a class="link_video" id="video_title" href=""></a>
+                </div>
+                <div class="youtube-channel-header-caption" id="youtube-channel-header-caption">
+
+
+                </div>
+            </div>
+        </div>
+        <div class ="channel-properties">
+            <span class="channel-properties-items">
+                <span>Videos: </span>
+                <span id="channel-properties-items-videos"></span>
+            </span>
+            <span class="channel-properties-items">
+                <span>Subcribers: </span>
+                <span id="channel-properties-items-subscribers"></span>
+            </span>
+            <span class="channel-properties-items">
+                <span>Views: </span>
+                <span id="channel-properties-items-views"></span>
+            </span>
+        </div>
+        <div class ="subscriber-channel">
+            <div style="text-indent: 0px; margin: 0px; padding: 0px; background: transparent none repeat scroll 0% 0%; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 86px; height: 24px;" id="___ytsubscribe_0" class="youtube-header-subscribe-button" >
+                <iframe id="youtube-header-subscribe-button" data-gapiattached="true" src="" name="I0_1477558168348" vspace="0" tabindex="0" style="position: static; top: 0px; width: 86px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 24px;" scrolling="no" marginwidth="0" marginheight="0" hspace="0" frameborder="0" width="100%">
+
+                </iframe>
+            </div>
+        </div>
+    </div>
+    <div class = "youtube-content">
+        <div class="youtube-widget-nav">
+            <div class="youtube-widget-nav-inner">
+                <ul class="youtube-widget-nav-list" id="youtube-widget-nav-list">
+                    <?php
+                    $group = $block->getGroupActive($gallery_id);
+                    foreach ($group as $item){
+                        ?>
+                        <li class="youtube-widget-nav-list-item" id="youtube-widget-nav-list-item-<?php echo $item['group_id'] ?>"><?php echo $item['group_name'] ?></li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+                <div class ="prev-widget-nav-list"></div>
+                <div class="next-widget-nav-list"></div>
+            </div>
+        </div>
+        <div class="youtube-widget-feed">
+            <div class="youtube-widget-feed-inner">
+                <div class="youtube-widget-feed-gr">
+                    <div class ="youtube-widget-feed-gr-content" id="youtube-widget-feed-gr-content">
+                        <div class ="youtube-widget-feed-gr-content-section" style="display: none">
+
+                            <div class="youtube-widget-feed-gr-content-section-one-video">
+                                <div class ="youtube-one-video-thumbnail">
+                                    <span class ="youtube-one-video-thumbnail-img">
+                                        <img src="" alt="">
+                                        </img>
+                                    </span>
+                                    <span class ="youtube-one-video-thumbnail-time"></span>
+                                </div>
+                                <div class ="youtube-one-video-info">
+                                    <div class="youtube-one-video-info-title">
+                                        <a href="" title=""></a>
+                                    </div>
+                                    <div class="youtube-one-video-info-upload-time"></div>
+                                    <div class="youtube-one-video-info-caption"></div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+require([
+    'jquery'
+],function($){
+    //get channel
+    var htmlOneVideo =
+        '<div class ="youtube-one-video-thumbnail">' +
+        '   <span class ="youtube-one-video-thumbnail-img">' +
+        '           <img src="" alt="">' +
+        '           </img>' +
+        '   </span>' +
+        '   <span class ="youtube-one-video-thumbnail-time"></span>' +
+        '</div>' +
+        '<div class ="youtube-one-video-info">' +
+        '   <div class="youtube-one-video-info-title">' +
+        '       <a class = "title-one-video-url" href =""></a>' +
+        '   </div>' +
+        '   <div class="youtube-one-video-info-upload-time"></div>' +
+        '   <div class="youtube-one-video-info-caption"></div>' +
+
+        '</div>';
+    getChannel("<?php echo $channel_code?>");
+
+    var divUl = document.getElementById('youtube-widget-nav-list');
+    var countLi = divUl.childElementCount;
+
+    var sectionj;
+    for(sectionj=0; sectionj<countLi; sectionj++){
+            $(divUl).children().eq(sectionj)[0].onclick = function (){
+
+                $("li").removeClass("li-active");
+                this.classList.add("li-active");
+                var idddd = (this.getAttribute("id")).replace("youtube-widget-nav-list-item-","");
+                var xxx = $('[id-gr="'+idddd+'"]');
+                var t;
+                $("div").removeClass("show-section");
+                for(t=0;t<xxx.length;t++){
+                   xxx[t].classList.add("show-section");
+                }
+        }
+    }
+
+    var i = 0;
+    <?php
+    foreach ($group as $item){
+        $groupList = $block->getGroupListActive($item['group_id']);
+        foreach ($groupList as $list){
+            $list_id = $list['list_id'];
+            $list_url = $list['list_url'];
+            $list_code = substr($list_url, 38, 71);
+            ?>
+            createSection(i, "<?php echo $item['group_id']?>");
+            var divAddChild = document.getElementById("youtube-widget-feed-gr-content-section-" + i);
+            divAddChild.classList.add("section");
+            createPrevList(divAddChild, i);
+            createNextList(divAddChild, i);
+            createSectionShow(divAddChild, i);
+            var divSectionShow = document.getElementById("youtube-widget-feed-gr-content-section-" + i + "-show")
+            getInforVideo("<?php echo $list_code ?>", divSectionShow, "", i);
+            i++;
+            <?php
+        }
+    }
+    ?>
+
+    function createPrevList(divAddChild,i) {
+        var div = document.createElement('div');
+        var span = document.createElement('span');
+        div.setAttribute("class", "youtube-widget-feed-gr-content-prev");
+        div.setAttribute("id", "youtube-widget-feed-gr-content-prev-"+i);
+        div.setAttribute("style", "position: absolute");
+        var text = document.createTextNode("<");
+        span.appendChild(text);
+        div.appendChild(span);
+        divAddChild.appendChild(div);
+    }
+    function createNextList(divAddChild,i) {
+        var div = document.createElement('div');
+        var span = document.createElement('span');
+        div.setAttribute("class", "youtube-widget-feed-gr-content-next");
+        div.setAttribute("id", "youtube-widget-feed-gr-content-next-"+i);
+        div.setAttribute("style", "position: absolute");
+        var text = document.createTextNode(">");
+        span.appendChild(text);
+        div.appendChild(span);
+        divAddChild.appendChild(div);
+    }
+    function getInforVideo(code, divAddChild, pageToken, uuu) {
+        $.get('https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=4&playlistId=' + code + '&key=AIzaSyBeY89QEyaa5z3O1Gtyc4vI6XKBzftsTJE&pageToken=' + pageToken + '',
+            null,
+            function getVideoPlayList(response) {
+                var data = response;
+                var listCount = data['items'];
+                var nextToken = data['nextPageToken'];
+                var prevToken = data['prevPageToken'];
+                $.each(listCount, function (key) {
+                    var titleOneVideo = data['items'][key]['snippet']['title'];
+                    var publishedOneAt = data['items'][key]['snippet']['publishedAt'];
+                    var pubYYYYMMDD = publishedOneAt.substring(0, 10);
+                    var thumbnailOne = data['items'][key]['snippet']['thumbnails']['high']['url'];
+                    var videoOneId = data['items'][key]['snippet']['resourceId']['videoId'];
+                    var description = data['items'][key]['snippet']['description'];
+                    var divOneVideo = document.createElement('div');
+                    divOneVideo.setAttribute("class", "youtube-widget-feed-gr-content-section-one-video");
+                    divOneVideo.setAttribute("id", videoOneId);
+                    divOneVideo.innerHTML = htmlOneVideo;
+                    divAddChild.appendChild(divOneVideo);
+                    var replaceID = document.querySelectorAll('[id = "'+videoOneId+'"]');
+                    $(replaceID).children(".youtube-one-video-thumbnail").children().children().attr("src", thumbnailOne);
+                    $(replaceID).children(".youtube-one-video-thumbnail").children().attr("href", "https://www.youtube.com/watch?v=" + videoOneId + "");
+                    $(replaceID).children(".youtube-one-video-info").children('.youtube-one-video-info-title').children().text(titleOneVideo);
+                    $(replaceID).children(".youtube-one-video-info").children(".youtube-one-video-info-upload-time").text(pubYYYYMMDD);
+                    $(replaceID).children(".youtube-one-video-info").children(".youtube-one-video-info-caption").text(description);
+                    $.get('https://www.googleapis.com/youtube/v3/videos?id='+videoOneId+'&key=AIzaSyBeY89QEyaa5z3O1Gtyc4vI6XKBzftsTJE&part=contentDetails',
+                        null,
+                        function (response) {
+                            var data = response ;
+                            var duration = ((((data['items'][0]['contentDetails']['duration']).replace("PT","")).replace("S","")).replace("M",":")).replace("H",":");
+
+                            $(replaceID).children('.youtube-one-video-thumbnail').children('.youtube-one-video-thumbnail-time').text(duration);
+                        });
+                    showPopup(videoOneId);
+                });
+                var nextPage = document.getElementById("youtube-widget-feed-gr-content-next-"+uuu);
+                nextPage.onclick = function () {
+                    if (nextToken != null) {
+                        $(this).parent().children().eq(2).remove();
+                        var divAddChild = document.getElementById("youtube-widget-feed-gr-content-section-"+uuu);
+                        createSectionShow(divAddChild, uuu);
+                        var divSectionShow = document.getElementById("youtube-widget-feed-gr-content-section-"+uuu+"-show")
+                        getInforVideo(code,divSectionShow,nextToken,uuu);
+                    }
+                };
+                var prevPage = document.getElementById("youtube-widget-feed-gr-content-prev-"+uuu);
+                prevPage.onclick = function () {
+                    if (prevToken != null) {
+                        $(this).parent().children().eq(2).remove();
+                        var divAddChild = document.getElementById("youtube-widget-feed-gr-content-section-"+uuu);
+                        createSectionShow(divAddChild, uuu);
+                        var divSectionShow = document.getElementById("youtube-widget-feed-gr-content-section-"+uuu+"-show")
+                        getInforVideo(code,divSectionShow,prevToken,uuu);
+                    }
+                };
+            })
+    }
+    function createSectionShow(divAddChild, i) {
+        var div = document.createElement('div');
+        div.setAttribute('id','youtube-widget-feed-gr-content-section-'+i+'-show');
+        div.setAttribute('class','youtube-widget-feed-gr-content-section');
+        divAddChild.appendChild(div);
+    }
+    function createSection(i,group_id){
+        var divSectionPar = document.getElementById('youtube-widget-feed-gr-content');
+        var divSectionI = document.createElement('div');
+        divSectionI.setAttribute("id", "youtube-widget-feed-gr-content-section-"+i);
+        divSectionI.setAttribute("id-gr",group_id );
+        divSectionPar.appendChild(divSectionI);
+    }
+    function getChannel(video_code) {
+        $.get('https://www.googleapis.com/youtube/v3/channels?part=statistics,brandingSettings,snippet,contentDetails&id='+video_code+'&key=AIzaSyBeY89QEyaa5z3O1Gtyc4vI6XKBzftsTJE',
+            null,
+            function (response) {
+                var data = response;
+                var check = data['items'];
+                if(check[0] == null || check[0] == ""){
+                    alert("Your Channel is not exist");
+                }
+                else {
+                    var upLoadId = data['items'][0]['contentDetails']['relatedPlaylists']['uploads'];
+                    var bannerImageUrl = data['items'][0]['brandingSettings']['image']['bannerImageUrl'];
+                    var description = data['items'][0]['brandingSettings']['channel']['description'];
+                    var title = data['items'][0]['brandingSettings']['channel']['title'];
+                    var profileImageUrl = data['items'][0]['snippet']['thumbnails']['default']['url'];
+                    $('#img-profile-channel').attr("src", profileImageUrl);
+                    var style = "background-image: url('" + bannerImageUrl + "'); background-size: auto 100% ";
+                    var url = "https://www.youtube.com/channel/" + video_code + "";
+                    $('#banner').attr("style", style);
+                    $('#video_title').attr("value", title);
+                    $('#video_description').attr("value", description);
+                    $('#video_title').text(title);
+                    $('.link_video').attr("href", url);
+                    $('#youtube-channel-header-caption').text(description);
+                    var videoCount = data['items'][0]['statistics']['videoCount'];
+                    var subscriberCount = data['items'][0]['statistics']['subscriberCount'];
+                    var viewCount = data['items'][0]['statistics']['viewCount'];
+                    $('#channel-properties-items-videos').text(videoCount);
+                    $('#channel-properties-items-videos').attr("title","Videos: "+videoCount+"");
+                    $('#channel-properties-items-subscribers').text(subscriberCount);
+                    $('#channel-properties-items-subscribers').attr("title", "Subscibers: "+subscriberCount+"");
+                    $('#channel-properties-items-views').text(viewCount);
+                    $('#channel-properties-items-views').attr("title", "View: "+viewCount+"");
+                    $('#youtube-header-subscribe-button').attr("src","https://www.youtube.com/subscribe_embed?usegapi=1&amp;channelid="+video_code+"")
+                }
+            });
+    }
+    //
+    function getPopup(oneID, modal) {
+    $.get('https://www.googleapis.com/youtube/v3/videos?id=' + oneID + '&key=AIzaSyBeY89QEyaa5z3O1Gtyc4vI6XKBzftsTJE&part=statistics,snippet,contentDetails,status,player,recordingDetails',
+        null,
+        function (response) {
+            var data = response;
+            var videoTitle = data['items'][0]['snippet']['title'];
+            var videoChannelTitle = data['items'][0]['snippet']['channelTitle'];
+            var videoChannelId = data['items'][0]['snippet']['channelId'];
+            var videoThumbnail = data['items'][0]['snippet']['thumbnails']['default']['url'];
+            var videoPublishedAt = data['items'][0]['snippet']['publishedAt'];
+            var videoDescription = data['items'][0]['snippet']['description'];
+            var videoViews = data['items'][0]['statistics']['viewCount'];
+            var videoLikes = data['items'][0]['statistics']['likeCount'];
+            var videoDislikes = data['items'][0]['statistics']['dislikeCount'];
+            console.log(videoDislikes);
+            var videoDuration = ((((data['items'][0]['contentDetails']['duration']).replace("PT","")).replace("S","")).replace("M",":")).replace("H",":");
+            var span = document.getElementById(oneID);
+
+            $(modal).children('.video-content').children().attr("src", "https://www.youtube.com/embed/" + oneID + "?enablejsapi=1&autoplay=false&showinfo=false");
+
+            $(modal).children('.popup-content').children('.watch-headline').children().text(videoTitle);
+            $(modal).children('.popup-content').children('.watch-video-info-meta').children('.watch-video-channel').children('.watch-thumbnail-channel').children().attr("herf", "https://www.youtube.com/channel/" + videoChannelId + "");
+            $(modal).children('.popup-content').children('.watch-video-info-meta').children('.watch-video-channel').children('.watch-thumbnail-channel').children().children().attr("src", videoThumbnail);
+
+            $(modal).children('.popup-content').children('.watch-video-info-meta').children('.watch-video-channel').children('.watch-video-channel-info').children('.watch-video-channel-info-name').attr("href", "https://www.youtube.com/channel/" + videoChannelId + "");
+            $(modal).children('.popup-content').children('.watch-video-info-meta').children('.watch-video-channel').children('.watch-video-channel-info').children('.watch-video-channel-info-name').text(videoChannelTitle);
+            $(modal).children('.popup-content').children('.watch-video-info-meta').children('.watch-video-properties').children('.watch-video-views').text(videoViews);
+            $(modal).children('.popup-content').children('.watch-video-info-meta').children('.watch-video-properties').children('.watch-video-rating').children('.watch-video-rating-count').children('.watch-video-like').children('.watch-video-likes').text(videoLikes);
+            $(modal).children('.popup-content').children('.watch-video-info-meta').children('.watch-video-properties').children('.watch-video-rating').children('.watch-video-rating-count').children('.watch-video-dislike').children('.watch-video-dislikes').text(videoDislikes);
+            $(modal).children('.popup-content').children('.watch-video-info-main').children('.watch-video-publish-date').text(videoPublishedAt);
+            $(modal).children('.popup-content').children('.watch-video-info-main').children('.watch-video-description').text(videoDescription);
+
+            $.get('https://www.googleapis.com/youtube/v3/channels?part=snippet&id=' + videoChannelId + '&key=AIzaSyBeY89QEyaa5z3O1Gtyc4vI6XKBzftsTJE',
+                null,
+                function (response) {
+                    var data = response;
+                    var profileImageUrl = data['items'][0]['snippet']['thumbnails']['default']['url'];
+
+                    $('#watch-thumbnail-channel-img').attr("src", profileImageUrl);
+                });
+        });
+}
+    function getPopupCmt(oneID, pageToken) {
+        $.get('https://www.googleapis.com/youtube/v3/commentThreads?key=AIzaSyBeY89QEyaa5z3O1Gtyc4vI6XKBzftsTJE&textFormat=plainText&part=snippet&videoId=' + oneID + '&maxResults=5&pageToken='+pageToken,
+        null,
+        function (response) {
+            var data = response;
+            var itemtCount = data['items'];
+            var pageTokenn = data['nextPageToken'];
+            var divCmtParent = document.getElementById('watch-video-cmts');
+            var divLoadMore = document.getElementById('load-more-cmt');
+            $.each(itemtCount, function (keyCmt) {
+                var authorDisplayName = data['items'][keyCmt]['snippet']['topLevelComment']['snippet']['authorDisplayName'];
+                var authorProfileImage = data['items'][keyCmt]['snippet']['topLevelComment']['snippet']['authorProfileImageUrl'];
+                var authorChannel = data['items'][keyCmt]['snippet']['topLevelComment']['snippet']['authorChannelUrl'];
+                var textDisplay = data['items'][keyCmt]['snippet']['topLevelComment']['snippet']['textDisplay'];
+                var updateCmt = data['items'][keyCmt]['snippet']['topLevelComment']['snippet']['updatedAt'];
+                var divCmt = document.createElement('div');
+                divCmt.setAttribute('class', 'watch-video-cmts-item');
+                var divChildCmt1 = document.createElement('div');
+                divChildCmt1.setAttribute('class', 'watch-video-cmts-item-profile')
+                divCmt.appendChild(divChildCmt1);
+                var divChildCmt1a = document.createElement('a');
+                divChildCmt1a.setAttribute('class', 'watch-video-cmts-item-profile-img-url');
+                divChildCmt1a.setAttribute('href', authorChannel);
+                divChildCmt1.appendChild(divChildCmt1a);
+                var divChildCmt1aimg = document.createElement('img');
+                divChildCmt1aimg.setAttribute('class', 'watch-video-cmts-item-profile-img');
+                divChildCmt1aimg.setAttribute('style', 'width:48px; height:48px');
+                divChildCmt1aimg.setAttribute('src', authorProfileImage);
+                divChildCmt1a.appendChild(divChildCmt1aimg);
+                var divChildCmt2 = document.createElement('div');
+                divChildCmt2.setAttribute('class', 'watch-video-cmts-item-info');
+                divCmt.appendChild(divChildCmt2);
+                var divChildCmt2Div = document.createElement('div');
+                divChildCmt2Div.setAttribute('class', 'watch-video-cmts-item-header');
+                divChildCmt2.appendChild(divChildCmt2Div);
+                var divChildCmt2DivDiv1 = document.createElement('div');
+                divChildCmt2DivDiv1.setAttribute('class', 'watch-video-cmts-item-name');
+                divChildCmt2Div.appendChild(divChildCmt2DivDiv1);
+                var divChildCmt2DivDiv1A = document.createElement('a');
+                divChildCmt2DivDiv1A.setAttribute('class', 'watch-video-cmts-item-name-url');
+                divChildCmt2DivDiv1A.setAttribute('href', authorChannel);
+                divChildCmt2DivDiv1.appendChild(divChildCmt2DivDiv1A)
+                var nameText = document.createTextNode(authorDisplayName);
+                divChildCmt2DivDiv1A.appendChild(nameText);
+                var divChildCmt2DivDiv2 = document.createElement('div');
+                divChildCmt2DivDiv2.setAttribute('class', 'watch-video-cmts-item-time');
+                divChildCmt2Div.appendChild(divChildCmt2DivDiv2);
+                var timeText = document.createTextNode(updateCmt);
+                divChildCmt2DivDiv2.appendChild(timeText);
+                var divChildCmt2Div2 = document.createElement('div');
+                divChildCmt2Div2.setAttribute('class', 'watch-video-cmts-item-text');
+                var cmtText = document.createTextNode(textDisplay);
+                divChildCmt2Div2.appendChild(cmtText);
+                divChildCmt2.appendChild(divChildCmt2Div2);
+                divCmtParent.appendChild(divCmt);
+            });
+            divLoadMore.onclick = function () {
+                getPopupCmt(oneID,pageTokenn);
+            };
+        });
+    }
+
+    function showPopup(videoOneId) {
+        var btn = document.getElementById(videoOneId);
+        var modal = document.getElementById('popup-page');
+        btn.onclick = function () {
+            modal.style.display = "block";
+            var oneID1 = btn.getAttribute('id');
+            getPopup(oneID1, modal);
+
+            getPopupCmt(oneID1,"");
+
+        };
+    }
+//
+    $(document).on("click", ".close", function () {
+        $(this).parent()[0].style.display = "none";
+
+        $(this).parent().children(".video-content").children().attr("src", "");
+        var divCmtParent = document.getElementById('watch-video-cmts');
+        $(divCmtParent).children().remove();
+
+    });
+    $(document).on("click", ".watch-video-description-more", function () {
+        $(this).parent().children('.watch-video-description')[0].classList.toggle("show-more");
+    });
+    $('#youtube-widget-nav-list').children().eq(0)[0].classList.add("li-active");
+        $('#youtube-widget-feed-gr-content').children().eq(1)[0].classList.add("show-section");
+//    var sectionShow = document.getElementById('youtube-widget-feed-gr-content-section-0');
+//    sectionShow.classList.add('show-section');
+})
+</script>
+<?php } ?>

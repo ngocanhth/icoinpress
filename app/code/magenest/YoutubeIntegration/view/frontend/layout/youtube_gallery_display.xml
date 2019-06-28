@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        Membership Planssssssssssssss
+        <css src="Magenest_Youtubeintegration::css/style.css" />
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\YoutubeIntegration\Block\Galley\Gallery" name="youtube_gallery_display" template="gallery/display.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

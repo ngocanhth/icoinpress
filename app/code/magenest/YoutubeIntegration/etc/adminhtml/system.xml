@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <!--<tab id="youtube" translate="label" sortOrder="900">-->
+            <!--<label>Magenest</label>-->
+        <!--</tab>-->
+        <!--<section id="gallery" translate="label" type="text" sortOrder="100"-->
+                 <!--showInDefault="1" showInWebsite="1"	showInStore="1">-->
+            <!--<label>Yotube Integration</label>-->
+            <!--<tab>youtube</tab>-->
+            <!--<resource>Magenest_YoutubeIntegration::config_gallery</resource>-->
+            <!--<group id="gallerypage" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                <!--<label>Gallery page settings</label>-->
+                <!---->
+                <!--<field id="header_title" translate="label" type="text"-->
+                       <!--sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Gallery title</label>-->
+                <!--</field>-->
+            <!--</group>-->
+        <!--</section>-->
+    </system>
+</config>

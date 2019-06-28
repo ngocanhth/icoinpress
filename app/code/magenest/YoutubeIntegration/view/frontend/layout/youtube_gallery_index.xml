@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Youtube Integration</title>
+        <css src="Magenest_YoutubeIntegration::css/styleFront.css" />
+        <js src ="Magenest_YoutubeIntegration::js/front.js" />
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+            <block class="Magenest\YoutubeIntegration\Block\Gallery\Gallery" name="youtube_gallery_display" template="gallery/display.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

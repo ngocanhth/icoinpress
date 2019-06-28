@@ -1,0 +1,32 @@
+<!--<!doctype html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Search</title>-->
+<!--</head>-->
+<body>
+<div id="buttons">
+    <label> <input id="query" value='cats' type="text"/><button id="search-button"  onclick="search()">Search</button></label>
+</div>
+<div id="search-container">
+</div>
+<script>
+    require([
+        'jquery',
+        'Magenest_YoutubeIntegration/view/web/js/jquery.min',
+    ])
+</script>
+<script src="auth.js">
+    require([
+        'auth',
+        'Magenest_YoutubeIntegration/js/auth',
+    ])
+</script>
+<script src="search.js">
+    require([
+        'search',
+        'Magenest_YoutubeIntegration/js/search',
+    ])
+</script>
+<script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+</body>
+<!--</html>-->

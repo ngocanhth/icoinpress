@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magenest. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magenest_YoutubeIntegration::youtube" title="Youtube Integration" module="Magenest_YoutubeIntegration" sortOrder="21" dependsOnModule="Magenest_YoutubeIntegration" resource="Magenest_YoutubeIntegration::youtube"/>
+
+        <add id="Magenest_YoutubeIntegration::gallery" title="Gallery" module="Magenest_YoutubeIntegration" sortOrder="100" parent="Magenest_YoutubeIntegration::youtube" action="youtube/gallery/index" resource="Magenest_YoutubeIntegration::gallery"/>
+        </menu>
+</config>
